@@ -1,0 +1,31 @@
+{
+  "name": "the-shop/fortytwo",
+  "description": "Boilerplate of 42 framework",
+  "license": "MIT",
+  "type": "project",
+  "homepage": "https://github.com/the-shop/fortytwo",
+  "authors": [
+    {
+      "name": "The Shop d.o.o.",
+      "homepage": "http://the-shop.io/"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "the-shop/fortytwo-crudapi": "^0.1.1",
+    "the-shop/fortytwo-terminal": "^0.1.1",
+    "the-shop/fortytwo-mongo": "^0.1.0",
+    "the-shop/fortytwo-sendgrid": "^0.1.0",
+    "the-shop/fortytwo-s3fu": "^0.1.0"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.0",
+    "phpunit/phpunit": "^6.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Application\\": "src/",
+      "Application\\Configuration\\": "config/"
+    }
+  }
+}
