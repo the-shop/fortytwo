@@ -2,7 +2,7 @@
 
 namespace Application;
 
-use Framework\Base\Application\BaseModule;
+use Framework\Base\Module\BaseModule;
 
 class Module extends BaseModule
 {
@@ -18,9 +18,6 @@ class Module extends BaseModule
         $application = $this->getApplication();
         $appConfig = $application->getConfiguration();
         $repositoryManager = $application->getRepositoryManager();
-
-        // Add acl rules
-        $application->setAclRules($appConfig->getPathValue('acl'));
 
         // Register model adapters
         $modelAdapters = $appConfig->getPathValue('modelAdapters');
@@ -42,11 +39,8 @@ class Module extends BaseModule
             $application->registerService(new $serviceName($config));
         }
 
-        //Add cron jobs
-        $cronJobs = $appConfig->getPathValue('cronJobs');
-        foreach ($cronJobs as $job => $params) {
-            $cronJob = new $job($params);
-            $application->registerCronJob($cronJob);
-        }
+        // Add commands to dispatcher
+        $application->getDispatcher()
+                    ->addRoutes($appConfig->getPathValue('commands'));
     }
 }
