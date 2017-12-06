@@ -1,5 +1,14 @@
 <?php
 
+use Application\SampleEchoCommand;
+use Aws\S3\S3Client;
+use Framework\Base\Service\EmailService;
+use Framework\Base\Service\FileUploadService;
+use Framework\Mongo\MongoAdapter;
+use Framework\S3FU\S3FileUpload;
+use Framework\SendGrid\SendGrid;
+use SendGrid as SendGridClient;
+
 return [
     'modelAdapters' => [
         'users' => [
@@ -22,10 +31,6 @@ return [
         'uploads' => MongoAdapter::class,
     ],
     'services' => [
-        SlackService::class => [
-            'apiClient' => SlackApiClient::class,
-            'httpClient' => Client::class,
-        ],
         EmailService::class => [
             'mailerInterface' => SendGrid::class,
             'mailerClient' => [
@@ -50,10 +55,11 @@ return [
             ],
         ],
     ],
-    'cronJobs' => [
-        SlackSendMessage::class => [
-            'timer' => 'everyMinute',
-            'args' => [],
+    'commands' => [
+        'sample:echo' => [
+            'handler' => SampleEchoCommand::class,
+            'requiredParams' => [],
+            'optionalParams' => [],
         ],
     ],
 ];
