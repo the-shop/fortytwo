@@ -22,6 +22,9 @@ $appConfig->setRegisteredModules([
 $app = new \Framework\CrudApi\CrudApiApplication($appConfig);
 // Add acl rules
 $app->setAclRules($appConfig->getPathValue('acl'));
+$app->getRepositoryManager()
+    ->addAuthenticatableModels($appConfig->getAuthenticatables());
+
 try {
     $app->run();
 } catch (\Exception $e) {
