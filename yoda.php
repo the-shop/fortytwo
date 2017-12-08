@@ -9,19 +9,12 @@ $appConfig = new \Framework\Base\Application\ApplicationConfiguration();
 $appConfig->setRegisteredModules(
     [
         \Framework\Base\Module::class,
-        \Framework\Terminal\Module::class,
-        \Application\Module::class
+        \Application\Module::class,
+        \Framework\Terminal\Module::class
     ]
 );
 
 $app = new \Framework\Terminal\TerminalApplication($appConfig);
-
-//Add cron jobs
-$cronJobs = $appConfig->getPathValue('cronJobs');
-foreach ($cronJobs as $job => $params) {
-    $cronJob = new $job($params);
-    $app->registerCronJob($cronJob);
-}
 
 try {
     $app->run();

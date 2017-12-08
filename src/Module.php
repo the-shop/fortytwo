@@ -3,6 +3,7 @@
 namespace Application;
 
 use Framework\Base\Module\BaseModule;
+use Framework\CrudApi\Repository\GenericRepository;
 
 class Module extends BaseModule
 {
@@ -39,8 +40,32 @@ class Module extends BaseModule
             $application->registerService(new $serviceName($config));
         }
 
-        // Add commands to dispatcher
-        $application->getDispatcher()
-                    ->addRoutes($appConfig->getPathValue('commands'));
+        // Format models configuration
+        $modelsConfiguration = $this->generateModelsConfiguration(
+            $appConfig->getPathValue('models')
+        );
+
+        // Register resources, repositories and model fields
+        $repositoryManager->registerResources($modelsConfiguration['resources'])
+                          ->registerModelFields($modelsConfiguration['modelFields']);
+    }
+
+    /**
+     * @param $modelsConfig
+     *
+     * @return array
+     */
+    private function generateModelsConfiguration(array $modelsConfig)
+    {
+        $generatedConfiguration = [
+            'resources' => [],
+            'modelFields' => [],
+        ];
+        foreach ($modelsConfig as $modelName => $options) {
+            $generatedConfiguration['resources'][$options['collection']] = GenericRepository::class;
+            $generatedConfiguration['modelFields'][$options['collection']] = $options['fields'];
+        }
+
+        return $generatedConfiguration;
     }
 }
