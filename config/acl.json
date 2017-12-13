@@ -2,16 +2,7 @@
   "acl": {
     "routes": {
       "public": {
-        "GET": [
-          {
-            "route": "/login",
-            "allows": [
-              "admin",
-              "standard",
-              "guest"
-            ]
-          }
-        ],
+        "GET": [],
         "POST": [
           {
             "route": "/login",
@@ -64,7 +55,8 @@
             "route": "/{resourceName}",
             "allows": [
               "admin",
-              "standard"
+              "standard",
+              "guest"
             ]
           },
           {
