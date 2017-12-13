@@ -66,7 +66,7 @@
           "validation": [
             "string"
           ],
-          "default": ""
+          "default": "standard"
         },
         "admin": {
           "label": "Admin",
@@ -74,7 +74,8 @@
           "required": false,
           "validation": [
             "boolean"
-          ]
+          ],
+          "default" : false
         },
         "passwordForgot": {
           "label": "Password Forgot",
@@ -86,6 +87,121 @@
           "label": "Password Reset Token",
           "type": "string",
           "required": false,
+          "default": ""
+        },
+        "passwordResetTime": {
+          "label": "Password Reset Time",
+          "type": "integer",
+          "required": false,
+          "default": 0
+        }
+      }
+    },
+    "Log": {
+      "collection": "logs",
+      "authenticatable": false,
+      "fields": {
+        "_id": {
+          "primaryKey": true,
+          "label": "ID",
+          "type": "string",
+          "disabled": true,
+          "required": false,
+          "default": ""
+        },
+        "name": {
+          "label": "Name",
+          "type": "string",
+          "required": false,
+          "validation": [
+            "string"
+          ],
+          "default": ""
+        },
+        "userId": {
+          "label": "ID",
+          "type": "string",
+          "required": false,
+          "validation": [
+            "string"
+          ],
+          "default": ""
+        },
+        "date": {
+          "label": "Date",
+          "type": "string",
+          "required": false,
+          "validation": [
+            "string"
+          ],
+          "default": ""
+        },
+        "ip": {
+          "label": "Ip",
+          "type": "string",
+          "required": false,
+          "validation": [
+            "string"
+          ],
+          "default": ""
+        },
+        "uri": {
+          "label": "Uri",
+          "type": "string",
+          "required": false,
+          "validation": [
+            "string"
+          ],
+          "default": ""
+        },
+        "method": {
+          "label": "Method",
+          "type": "string",
+          "required": false,
+          "validation": [
+            "string"
+          ],
+          "default": ""
+        }
+      }
+    },
+    "Upload": {
+      "collection": "uploads",
+      "authenticatable": false,
+      "fields": {
+        "_id": {
+          "primaryKey": true,
+          "label": "ID",
+          "type": "string",
+          "disabled": true,
+          "required": false,
+          "default": ""
+        },
+        "projectId": {
+          "label": "Project ID",
+          "type": "string",
+          "required": true,
+          "validation": [
+            "string"
+          ],
+          "default": ""
+        },
+        "name": {
+          "label": "Name",
+          "type": "string",
+          "required": false,
+          "validation": [
+            "string"
+          ],
+          "default": ""
+        },
+        "fileUrl": {
+          "label": "File Url",
+          "type": "string",
+          "required": false,
+          "validation": [
+            "string"
+          ],
           "default": ""
         }
       }
