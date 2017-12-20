@@ -22,7 +22,8 @@ $appConfig->setRegisteredModules([
 $app = new \Framework\CrudApi\CrudApiApplication($appConfig);
 
 try {
-    $app->run();
+    $app->bootstrap()
+        ->run();
 } catch (\Exception $e) {
     $app->getExceptionHandler()
         ->handle($e);
