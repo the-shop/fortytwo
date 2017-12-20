@@ -17,7 +17,8 @@ $appConfig->setRegisteredModules(
 $app = new \Framework\Terminal\TerminalApplication($appConfig);
 
 try {
-    $app->run();
+    $app->bootstrap()
+        ->run();
 } catch (\Exception $e) {
     $app->getExceptionHandler()
         ->handle($e);
